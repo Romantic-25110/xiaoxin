@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>蜡笔小新网站</title>
+    <link rel="stylesheet" href="./bootstrap-5.3.0-alpha1-dist/css/bootstrap.min.css">
+    <style>
+        #customCarousel .carousel-inner {
+            height: 80vh;
+            max-height: 600px;
+        }
+
+        #customCarousel .carousel-item,
+        #customCarousel .carousel-item img {
+            height: 100%;
+            width: 100%;
+            object-fit: cover;
+            object-position: center;
+        }
+
+        .cards-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1.5rem;
+        }
+
+        body {
+            background: linear-gradient(120deg, #f8fafc 0%, #e0e7ff 100%);
+            font-family: '微软雅黑', 'PingFang SC', 'Helvetica Neue', Arial, sans-serif;
+            color: #222;
+        }
+
+        .navbar {
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            background: #fff !important;
+        }
+
+        .navbar-brand {
+            font-weight: bold;
+            font-size: 1.6rem;
+            letter-spacing: 2px;
+            color: #ff9800 !important;
+        }
+
+        .navbar-nav .nav-link {
+            font-size: 1.1rem;
+            margin: 0 10px;
+            border-radius: 20px;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .navbar-nav .nav-link.active,
+        .navbar-nav .nav-link:hover {
+            background: #ffe0b2;
+            color: #ff9800 !important;
+        }
+
+        h2,
+        .h2 {
+            font-weight: bold;
+            color: #ff9800;
+            margin-bottom: 1.2rem;
+            letter-spacing: 1px;
+        }
+
+        hr {
+            border-top: 2px dashed #ff9800;
+            margin: 2rem 0;
+        }
+
+        .card,
+        .border.rounded.p-3,
+        .table {
+            box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.07);
+            border-radius: 1rem !important;
+            border: none !important;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .card:hover {
+            transform: translateY(-6px) scale(1.03);
+            box-shadow: 0 8px 32px 0 rgba(255, 152, 0, 0.15);
+        }
+
+        .card-title,
+        .card-text,
+        .table th,
+        .table td {
+            color: #444;
+        }
+
+        .card-title {
+            font-weight: bold;
+            color: #ff9800;
+        }
+
+        .card-img-top,
+        .img-fluid.rounded-circle {
+            border-radius: 1rem !important;
+            border: 3px solid #fff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+        }
+
+        .table th,
+        .table td {
+            vertical-align: middle !important;
+        }
+
+        .table th {
+            background: #fff3e0;
+            color: #ff9800;
+            font-weight: bold;
+        }
+
+        .table-striped>tbody>tr:nth-of-type(odd) {
+            background-color: #fff8e1;
+        }
+
+        .cards-container {
+            gap: 2rem !important;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            background: #fff3e0;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #ffcc80;
+            border-radius: 4px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        @media (max-width: 768px) {
+
+            .card,
+            .border.rounded.p-3,
+            .table {
+                border-radius: 0.7rem !important;
+            }
+
+            h2,
+            .h2 {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light shadow-sm mb-4">
+        <div class="container-fluid">
+            <!-- 品牌标识 -->
+            <a class="navbar-brand fw-bold text-warning" href="#">蜡笔小新</a>
+
+            <!-- 移动端折叠按钮 -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- 导航内容 -->
+            <div class="collapse navbar-collapse " id="navbarContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#about">自我介绍</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#info">个人信息</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#team">春日部防卫队成员</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#capsule">时间胶囊</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div id="customCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel" data-bs-interval="3000"
+        data-bs-pause="hover">
+
+        <!-- 指示器 -->
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="0" class="active"></button>
+            <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="1"></button>
+            <button type="button" data-bs-target="#customCarousel" data-bs-slide-to="2"></button>
+        </div>
+
+        <!-- 轮播项目 -->
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="./img/一家人.jpg" class="d-block w-100" alt="野原一家">
+                <div class="carousel-caption">
+                    <h3>野原一家</h3>
+                    <p>我们是野原一家！</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./img/我的一家人.jpg" class="d-block w-100" alt="快乐的一家人">
+                <div class="carousel-caption">
+                    <h3>快乐的一家人</h3>
+                    <p>温馨、快乐、时而吵闹的每一天。</p>
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="./img/轮播图.jpg" class="d-block w-100" alt="春日部防卫队">
+                <div class="carousel-caption">
+                    <h3>春日部防卫队</h3>
+                    <p>春日部防卫队，Fire！</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- 控制按钮 -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#customCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#customCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container my-5" id="about">
+        <div class="row align-items-center border rounded-4 shadow p-4 bg-white">
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <img src="./img/自我介绍.jpeg" class="img-fluid rounded-circle shadow border border-3 border-white"
+                    alt="野原新之助" style="max-width: 250px;">
+            </div>
+            <div class="col-md-8">
+                <h2 class="fw-bold text-warning mb-3">自我介绍</h2>
+                <p class="lead">我是野原新之助，今年5岁，大家通常叫我小新。我住在春日部，是双叶幼儿园向日葵班的学生。我最喜欢动感超人、巧克力饼干，还有漂亮的大姐姐！</p>
+                <p>虽然我有时候会惹麻烦，但我和爸爸、妈妈、小葵、还有小白，我们是相亲相爱的一家人！</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-6" id="info">
+        <div class="row align-items-center border rounded-4 shadow p-4 bg-white">
+            <div class="col-md-4 text-center mb-4 mb-md-0">
+                <img src="./img/蜡笔小新.jpg" class="img-fluid rounded-circle shadow border border-3 border-white"
+                    alt="野原新之助" style="max-width: 250px;">
+            </div>
+            <div class="col-md-8">
+                <h2 class="fw-bold text-warning mb-3">个人信息</h2>
+                <table class="table table-striped align-middle rounded-4 overflow-hidden bg-white">
+                    <tbody>
+                        <tr>
+                            <td class="fw-bold text-warning">姓名</td>
+                            <td>野原新之助（小新）</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold text-warning">年龄</td>
+                            <td>5岁（永远的幼儿园儿童）</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold text-warning">住址</td>
+                            <td>埼玉县春日部市双叶街904号（带32年房贷的二层小楼）</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold text-warning">家庭成员</td>
+                            <td>野原广志（爸爸）·野原美冴（妈妈）·野原葵（妹妹）·小白（小狗）</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold text-warning">班级</td>
+                            <td>动感幼儿园向日葵小班</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold text-warning">挚爱</td>
+                            <td>动感超人·巧克力饼干·美女姐姐·小熊饼干</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold text-warning">天敌</td>
+                            <td>青椒·纳豆·妈妈藏起来的布丁</td>
+                        </tr>
+                        <tr>
+                            <td class="fw-bold text-warning">特长</td>
+                            <td>露PP外星人舞·三秒惹怒妈妈·用脸模仿各种屁股</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="container my-4" id="team">
+        <h2 class="text-center fw-bold text-warning mb-4">春日部防卫队成员</h2>
+        <div class="d-flex justify-content-center py-3 flex-wrap gap-4">
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/阿呆.jpg" class="card-img-top rounded-4" alt="野原新之助">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">啊呆</h5>
+                    <p class="card-text text-center">春日部防卫队成员，总是流着鼻涕，但深藏不露。</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/风间彻.jpg" class="card-img-top rounded-4" alt="风间彻">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">风间彻</h5>
+                    <p class="card-text text-center">春日部防卫队成员，梦想进入名门私立小学的精英。</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/妮妮.jpeg" class="card-img-top rounded-4" alt="樱田妮妮">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">樱田妮妮</h5>
+                    <p class="card-text text-center">春日部防卫队成员，喜欢玩"超真实扮家家酒"。</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/正南.png" class="card-img-top rounded-4" alt="佐藤正男">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">佐藤正男</h5>
+                    <p class="card-text text-center">春日部防卫队成员，性格胆小，外号"饭团头"。</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/小新.jpg" class="card-img-top rounded-4" alt="阿呆">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">野原新之助 (小新)</h5>
+                    <p class="card-text text-center">本故事的主角，一个"超级"早熟的五岁男孩，春日部防卫队的创始人。</p>
+                </div>
+            </div>
+        </div>
+        <hr class="my-5 border-warning border-2 opacity-50">
+        <h2 class="h2 text-center fw-bold text-warning mb-4" id="capsule">时间胶囊</h2>
+        <div class="cards-container d-flex flex-wrap gap-4 justify-content-center py-3">
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/动感超人大战泳装魔王.jpg" class="card-img-top rounded-4" alt="《动感超人大战泳装魔王》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《动感超人大战泳装魔王》</h5>
+                    <h6 class="text-center text-muted">1993</h6>
+                    <p class="card-text">
+                        小新一家意外进入平行世界，发现动感超人的能量源"动感石头"被泳装魔王（高叉魔王）夺走。魔王计划用"高叉光波"控制人类，小新凭借稀有卡片召唤动感超人，双方展开对决。最终小新与超人联手释放双重动感光波击败魔王，拯救地球
+                    </p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/布里布里王国的宝藏.jpg" class="card-img-top rounded-4" alt="《布里布里王国的宝藏》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《布里布里王国的宝藏》</h5>
+                    <h6 class="text-center text-muted">1994</h6>
+                    <p class="card-text">
+                        小新被误认为布里布里王国失踪王子，与父母前往热带王国寻宝。反派大臣企图篡位，利用宝藏制造战争武器。小新在肥嘟嘟左卫门帮助下揭露阴谋，以"屁屁舞"扰乱敌人，最终用纯真感化反派，守护王国和平
+                    </p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/云黑斋的野心.jpg" class="card-img-top rounded-4" alt="《云黑斋的野心》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《云黑斋的野心》</h5>
+                    <h6 class="text-center text-muted">1995</h6>
+                    <p class="card-text">
+                        时空罪犯云黑斋穿越战国时代篡改历史，导致未来春日部消失。小新与父亲广志被时空巡逻队招募，穿越至战国对抗云黑斋。他们联合武士集团，用现代物品（如汽车、电筒）扰乱战场，最终在京都决战中破坏云黑斋的时光机，恢复历史轨迹
+                    </p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/奇异乐园大冒险.jpg" class="card-img-top rounded-4" alt="《奇异乐园大冒险》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《奇异乐园大冒险》</h5>
+                    <h6 class="text-center text-muted">1996</h6>
+                    <p class="card-text">
+                        小新在游乐园结识木偶多佩玛，发现魔法师"同性恋双魔"企图用黑暗魔法征服地球。父母被变成人偶后，小新闯入魔法世界，通过扑克牌魔法战斗。最终以"童真之光"破解魔法，救回父母并感化反派</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/黑暗珠珠大追击.jpg" class="card-img-top rounded-4" alt="《黑暗珠珠大追击》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《黑暗珠珠大追击》</h5>
+                    <h6 class="text-center text-muted">1997</h6>
+                    <p class="card-text">
+                        妹妹小葵误吞神秘黑珠，遭跨国犯罪集团追捕。野原一家携春日部防卫队展开公路逃亡，从东京到北海道。黑珠实为古代能源"暗黑珠"，小新以"婴儿语"激发其正能量，反制集团首领的武器，化解危机</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/电击！猪之蹄大作战.jpg" class="card-img-top rounded-4" alt="《电击！猪之蹄大作战》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《电击！猪之蹄大作战》</h5>
+                    <h6 class="text-center text-muted">1998</h6>
+                    <p class="card-text">
+                        小新捡到特工手表，卷入国际组织"猪蹄组"与"鸡爪组"的芯片争夺战。芯片可操控全球电器，反派计划制造混乱。小新误操作引发东京大停电，最终与特工合作，用玩具车撞毁反派基地，芯片被毁</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/爆发！温泉火热大决战.jpg" class="card-img-top rounded-4" alt="《爆发！温泉火热大决战》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《爆发！温泉火热大决战》</h5>
+                    <h6 class="text-center text-muted">1999</h6>
+                    <p class="card-text">
+                        "温泉G族"与"污垢达人"爆发战争，野原家被卷入。广志被改造为战斗机器人，美冴研发温泉武器。全家为守护日本温泉文化，在富士山决战。小新以"臭袜子"污染反派纯净水系统，瓦解其力量</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/风起云涌的森林冒险.jpg" class="card-img-top rounded-4" alt="《风起云涌的森林冒险》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《风起云涌的森林冒险》</h5>
+                    <h6 class="text-center text-muted">2000</h6>
+                    <p class="card-text">
+                        野原夫妇参加抽奖旅游中陷阱，被绑架至南美原始部落。春日部防卫队独自营救，穿越毒虫密林，遭遇食人族与雇佣兵。小新用"动感超人面具"吓退敌人，联合部落原住民推翻反派殖民计划</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/大人帝国的反击.jpg" class="card-img-top rounded-4" alt="《大人帝国的反击》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《大人帝国的反击》</h5>
+                    <h6 class="text-center text-muted">2001</h6>
+                    <p class="card-text">
+                        神秘组织"昨日重现"用怀旧气体催眠全日本成人，令其沉迷过去。小新为唤醒父母，带着童年广志穿越人生关键场景。高潮中广志的"脚臭回忆"破解洗脑，全家用亲情冲破组织控制</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/战国大合战.jpg" class="card-img-top rounded-4" alt="《战国大合战》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《战国大合战》</h5>
+                    <h6 class="text-center text-muted">2002</h6>
+                    <p class="card-text">
+                        小新挖出时空盒穿越战国，见证武士井尻又兵卫与廉公主的禁忌之恋。野原全家穿越助战，广志开车冲散敌军，但又兵卫为护公主战死。小新埋下家书开启时空门，全家含泪回归现代</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/光荣的烤肉之路.jpg" class="card-img-top rounded-4" alt="《光荣的烤肉之路》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《光荣的烤肉之路》</h5>
+                    <h6 class="text-center text-muted">2003</h6>
+                    <p class="card-text">
+                        美冴买豪华烤肉却被诬陷为通缉犯，全家遭熟人背叛。三人分三路逃亡至热海，途中广志扛货车、美冴智斗警察、小新骑狗狂奔。最终揭露市长阴谋，团聚时小新大喊："回家吃烤肉！"</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/夕阳下的春日部男孩.jpg" class="card-img-top rounded-4" alt="《夕阳下的春日部男孩》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《夕阳下的春日部男孩》</h5>
+                    <h6 class="text-center text-muted">2004</h6>
+                    <p class="card-text">
+                        野原家被吸入西部片电影世界，居民记忆逐渐消失。风间沦为警长镇压民众，妮妮与正男结婚沉溺虚幻。小新联合阿呆制作"超能内裤"，带领居民对抗独裁镇长。结局打破银幕回归现实</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/我的搬家物语.jpg" class="card-img-top rounded-4" alt="《我的搬家物语》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《我的搬家物语》</h5>
+                    <h6 class="text-center text-muted">2005</h6>
+                    <p class="card-text">
+                        野原家度假时遭遇巨型仙人掌入侵小镇，仙人掌释放催眠花粉控制居民。小新发现幕后黑手是企图绿化地球的环保极端组织"仙人掌教会"。春日部防卫队用消防水枪对抗，最终以广志的臭袜子制成"气味炸弹"污染花粉，瓦解仙人掌军团
+                    </p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/Amigo！森巴入侵计划.jpg" class="card-img-top rounded-4" alt="《Amigo!森巴入侵计划》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《Amigo!森巴入侵计划》</h5>
+                    <h6 class="text-center text-muted">2006</h6>
+                    <p class="card-text">外星人复制人类制造混乱，春日部陷入信任危机。风间目睹母亲被复制却拒绝承认，广志为护家单挑外星军团。小新以森巴舞扰乱外星频率，联合复制体反杀主脑</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/会唱歌的屁股炸弹.jpg" class="card-img-top rounded-4" alt="《会唱歌的屁股炸弹》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《会唱歌的屁股炸弹》</h5>
+                    <h6 class="text-center text-muted">2007</h6>
+                    <p class="card-text">小白误吞外星炸弹，随全家冲绳度假。炸弹遇海水爆炸，小新携小白逃亡。发现炸弹实为外星幼崽，反派欲夺其能源。小新以"屁股歌"安抚幼崽，激发保护罩反制反派舰队
+                    </p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/呼风唤雨！金矛之勇者.jpg" class="card-img-top rounded-4" alt="《呼风唤雨！金矛之勇者》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《呼风唤雨！金矛之勇者》</h5>
+                    <h6 class="text-center text-muted">2008</h6>
+                    <p class="card-text">
+                        小新购入动感超人玩具剑，回家后却发现它变成了一把金色直尺。神秘美女普莉莲突然造访，诱骗小新开启了连接地球与超级黑暗世界的"暗之门"，导致黑暗力量入侵野原家，引发一连串灾难</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/呐喊！春日部野生王国.jpg" class="card-img-top rounded-4" alt="《呐喊！春日部野生王国》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《呐喊！春日部野生王国》</h5>
+                    <h6 class="text-center text-muted">2009</h6>
+                    <p class="card-text">邪恶公司用"人类动物化喷雾"推行原始社会。美冴变豹护子，广志成龟躲壳。小新率动物化居民反攻，用垃圾车喷洒解药。高潮美冴兽性爆发撕碎反派机甲，母爱逆转战局
+                    </p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/我的新娘.jpg" class="card-img-top rounded-4" alt="《我的新娘》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《我的新娘》</h5>
+                    <h6 class="text-center text-muted">2010</h6>
+                    <p class="card-text">
+                        未来新娘多美子求助5岁小新拯救成年小新。两人穿越至陨石撞击后的灰暗未来，对抗支配者"金有增藏"。小新发现成年自己因保护市民被捕，最终以"童年玩具"唤醒其斗志，夫妻合力推翻暴政</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/黄金间谍大作战.jpg" class="card-img-top rounded-4" alt="《黄金间谍大作战》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《黄金间谍大作战》</h5>
+                    <h6 class="text-center text-muted">2011</h6>
+                    <p class="card-text">
+                        小新捡到特工眼镜，被误认为传奇间谍"柠檬"。国际组织争夺可洗脑的"黄金螺丝"，父母被植入螺丝控制。小新扮间谍潜入邮轮，用"屁屁舞"干扰信号，父子合拧螺丝解除危机</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/我和我的宇宙公主.jpg" class="card-img-top rounded-4" alt="《我和我的宇宙公主》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《我和我的宇宙公主》</h5>
+                    <h6 class="text-center text-muted">2012</h6>
+                    <p class="card-text">小葵被外星人选为公主维持双星平衡。小新因妒忌签署放弃妹妹协议，后悔悟穿越宇宙救援。发现国王欲牺牲小葵救星球，小新以兄妹羁绊重启能量核心，双星重生</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/B级美食大逃亡.jpg" class="card-img-top rounded-4" alt="《B级美食大逃亡》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《B级美食大逃亡》</h5>
+                    <h6 class="text-center text-muted">2013</h6>
+                    <p class="card-text">A级美食财团企图消灭平民料理（B级美食）。春日部防卫队护送终极酱汁至美食节，途中风间因理念不合离队。小新以炒面感化风间，众人用酱汁激活"B级美食炮"轰垮财团塔
+                    </p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/机器人爸爸的反击.jpg" class="card-img-top rounded-4" alt="《机器人爸爸的反击》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《机器人爸爸的反击》</h5>
+                    <h6 class="text-center text-muted">2014</h6>
+                    <p class="card-text">广志被"爸爸奋起同盟"改造成机器人，策划爸爸革命。机器广志暴走镇压市民，小新强忍吃青椒唤醒其记忆。最终机器广志为保护小新牺牲，临终嘱托："你要好好长大。"
+                    </p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/外星人噼噼.jpg" class="card-img-top rounded-4" alt="《外星人噼噼》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《外星人噼噼》</h5>
+                    <h6 class="text-center text-muted">2015</h6>
+                    <p class="card-text">
+                        外星幼崽"噼噼"坠毁春日部，遭星际猎人追捕。小新藏匿噼噼并教其地球生活，发现噼噼的眼泪能修复机械。猎人绑架小葵逼迫噼噼修复飞船，小新以"洋葱战术"刺激噼噼大哭，泪水激活飞船自毁程序，猎人仓皇逃离
+                    </p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/爆睡！梦世界大突击.jpg" class="card-img-top rounded-4" alt="《爆睡！梦世界大突击》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《爆睡！梦世界大突击》</h5>
+                    <h6 class="text-center text-muted">2016</h6>
+                    <p class="card-text">
+                        春日部市民陷入噩梦昏迷，转学生小崎操控梦境救母。小新组队入梦：风间成精英焦虑、妮妮变暴怒偶像。小新直面"被遗弃"恐惧，以快乐能量击败噩梦怪物，助小崎接受母亲病逝</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/宇宙人Pi力来襲！！.jpg" class="card-img-top rounded-4" alt="《宇宙人Pi力来襲！！》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《宇宙人Pi力来襲！！》</h5>
+                    <h6 class="text-center text-muted">2017</h6>
+                    <p class="card-text">神秘宇宙幼崽 Pi力（シリリ） 突降野原家，其射线意外将广志与美冴变回孩童。为恢复原状，野原一家被迫协助Pi力寻找父亲。然而，Pi力之父实为
+                        纳斯塔星帝王，企图推行"人类幼龄化计划"，将全球成人变为儿童以掌控地球</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/功夫小子之拉面大乱斗.jpg" class="card-img-top rounded-4" alt="《功夫小子之拉面大乱斗》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《功夫小子之拉面大乱斗》</h5>
+                    <h6 class="text-center text-muted">2018</h6>
+                    <p class="card-text">正男习武对抗垄断拉面的黑熊猫帮。小新因骨骼清奇被选中学"软Q软Q拳"，师姐小兰喝下神力饮料黑化，欲净化人类。小新以无厘头舞蹈唤醒其初心，瓦解黑帮</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/新婚旅行风暴.jpg" class="card-img-top rounded-4" alt="《新婚旅行风暴》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《新婚旅行风暴》</h5>
+                    <h6 class="text-center text-muted">2019</h6>
+                    <p class="card-text">野原夫妇澳洲蜜月重演，广志被采矿集团绑架。小新联手土著少女，揭露集团篡改传说盗取圣石。美冴驾骆驼冲撞机甲，全家用"家族合照"激活土著图腾，封印圣石</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/激战！涂鸦王国和约四位勇士.jpg" class="card-img-top rounded-4" alt="《激战！涂鸦王国和约四位勇士》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《激战！涂鸦王国和约四位勇士》</h5>
+                    <h6 class="text-center text-muted">2020</h6>
+                    <p class="card-text">
+                        悬浮于空中的奇幻国度，依靠人类儿童的"涂鸦能量"维持存在。随着科技发展，地面涂鸦减少，王国濒临崩塌,小新意外获得涂鸦王国的宝物"奇迹蜡笔"，被选为拯救世界的勇者。</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/谜团！花之天下春日部学院.jpg" class="card-img-top rounded-4" alt="《谜团！花之天下春日部学院》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《谜团！花之天下春日部学院》</h5>
+                    <h6 class="text-center text-muted">2021</h6>
+                    <p class="card-text">风间邀小新入精英学院，学生遭"吸屁屁鬼"袭击昏迷。小新组侦探社，发现校长用AI积分制操控学生。最终以"零分试卷"瘫痪系统，解放校园</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/幽灵忍者珍风传.jpg" class="card-img-top rounded-4" alt="《幽灵忍者珍风传》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《幽灵忍者珍风传》</h5>
+                    <h6 class="text-center text-muted">2022</h6>
+                    <p class="card-text">宇宙光波赋予小新"屁股悬浮"超能力，失业青年非理谷充获黑暗力量毁灭城市。两人因手卷寿司结缘，小新以"接纳脆弱"感化充，双光融合重塑东京</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/新次元！超能力大决战.jpg" class="card-img-top rounded-4" alt="《新次元！超能力大决战》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《新次元！超能力大决战》</h5>
+                    <h6 class="text-center text-muted">2023</h6>
+                    <p class="card-text">宇宙光波赋予小新"屁股悬浮"超能力，失业青年非理谷充获黑暗力量毁灭城市。两人因手卷寿司结缘，小新以"接纳脆弱"感化充，双光融合重塑东京</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/我们的恐龙日记.jpg" class="card-img-top rounded-4" alt="《我们的恐龙日记》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《我们的恐龙日记》</h5>
+                    <h6 class="text-center text-muted">2024</h6>
+                    <p class="card-text">小新孵化恐龙"纳纳"，对抗基因公司制造战争恐龙。纳纳踢穿机械暴龙兽（反物理设定引争议），野原家携防卫队守护跨物种友情，主题公园阴谋瓦解</p>
+                </div>
+            </div>
+            <div class="card rounded-4 shadow border-0" style="width: 18rem;">
+                <img src="./img/超华丽！灼热的春日部舞者.jpg" class="card-img-top rounded-4" alt="《超华丽！灼热的春日部舞者》">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold text-warning text-center">《超华丽！灼热的春日部舞者》</h5>
+                    <h6 class="text-center text-muted">2025</h6>
+                    <p class="card-text">春日部防卫队在"春日部儿童娱乐节"舞蹈比赛中获胜，赢得前往印度演出的机会
+                        在印度旅行期间，阿呆偶然进入一家神秘杂货店，发现一个鼻子形状的背包。阿呆误将背包内的纸巾塞入鼻孔，触发邪恶力量，瞬间从温和智者蜕变为拥有毁灭力量的"暴君"小新率春日部防卫队联合印度警察卡比尔、迪尔，通过传统舞蹈仪式对抗阿呆的力量。高潮部分以回忆杀"自然之火
+                        FIRE！"唤醒阿呆的本心</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./bootstrap-5.3.0-alpha1-dist/js/bootstrap.min.js"></script>
+</body>
+
+</html>
